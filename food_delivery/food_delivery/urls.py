@@ -10,6 +10,6 @@ urlpatterns = [
 
     # The 'login/' string MUST point to login_view
     path('login/', views.login_view, name='login'),
-    
-    path('restaurant/', include('restaurant.urls')),
+
+    path('', include('restaurant.urls')),
 ]
