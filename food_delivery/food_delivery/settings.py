@@ -59,7 +59,7 @@ ROOT_URLCONF = 'food_delivery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Update this line exactly like this
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'restaurant', 'templates')],  # Update this line exactly like this
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

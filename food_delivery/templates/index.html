@@ -11,12 +11,16 @@
         <p>Your registered email: {{ user.email }}</p>
         <br>
         <a href="/admin/">Go to the Admin Panel</a>
+        <br>
+        <br>
+        <a href="{% url 'restaurant_index' %}">Manage Restaurants</a>
 
     {% else %}
         <p>Please log in to continue.</p>
         <nav>
             <ul>
                 <li><a href="/login/">Login Page</a></li>
+                <li><a href="{% url 'restaurant_index' %}">Manage Restaurants</a></li>
             </ul>
         </nav>
     {% endif %}

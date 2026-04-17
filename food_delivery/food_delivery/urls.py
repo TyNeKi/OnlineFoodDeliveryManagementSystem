@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from accounts import views
 
 urlpatterns = [
@@ -10,4 +10,6 @@ urlpatterns = [
 
     # The 'login/' string MUST point to login_view
     path('login/', views.login_view, name='login'),
+    
+    path('restaurant/', include('restaurant.urls')),
 ]
