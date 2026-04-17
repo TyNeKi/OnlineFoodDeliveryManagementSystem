@@ -3,8 +3,23 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+from .forms import AdminForm
+
 def index_view(request):
-    return render(request, 'index.html')
+    return render(request, 'accounts/index.html')
+
+
+def add_admin_view(request):
+    if request.method == 'POST':
+        form = AdminForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = AdminForm()
+
+    return render(request, 'accounts/addNewAdmin.html', {'form': form})
+
 
 def login_view(request):
     if request.method == 'POST':
