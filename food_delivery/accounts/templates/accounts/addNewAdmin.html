@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Admin</title>
+</head>
+<body>
+    <h1>Add New Admin</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Admin</button>
+    </form>
+
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
