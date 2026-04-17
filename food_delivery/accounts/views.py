@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 def index_view(request):
-    return render(request, 'index.html')
+    return render(request, 'dashboard_index.html')
 
 def login_view(request):
     if request.method == 'POST':

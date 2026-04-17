@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Order</title>
+</head>
+<body>
+    <h1>Add New Order</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3>Order</h3>
+    {{ order_form }}
+
+    <h3>Item</h3>
+    {{ item_form }}
+
+
+        <button type="submit">Save Order</button>
+    </form>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
