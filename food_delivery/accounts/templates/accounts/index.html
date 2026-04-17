@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Delivery Project</title>
+</head>
+<body>
+    <h1>Welcome to the Food Delivery Dashboard</h1>
+
+    {% if user.is_authenticated %}
+        <p style="color: green;">Success! You are currently logged in as: <b>{{ user.username }}</b></p>
+        <p>Your registered email: {{ user.email }}</p>
+        <br>
+        <nav>
+            <ul>
+                <li><a href="/admin/add/">Add a new Admin record</a></li>
+                <li><a href="/admin/">Go to the Django Admin Panel</a></li>
+            </ul>
+        </nav>
+    {% else %}
+        <p>Please log in to continue.</p>
+        <nav>
+            <ul>
+                <li><a href="/login/">Login Page</a></li>
+            </ul>
+        </nav>
+    {% endif %}
+
+</body>
+</html>
