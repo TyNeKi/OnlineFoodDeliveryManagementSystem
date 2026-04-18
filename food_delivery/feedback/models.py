@@ -19,20 +19,6 @@ class Complaint(models.Model):
     def __str__(self):
         return "Complaint " + str(self.complaintID)
 
-
-class Review(models.Model):
-    reviewID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey('accounts.Customer', on_delete=models.CASCADE)
-    restaurantID = models.ForeignKey('restaurant.Restaurant', on_delete=models.CASCADE)
-    order = models.ForeignKey('orders.Order', on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField()
-    comment = models.TextField()
-    reviewDate = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return "Review " + str(self.reviewID)
-
-
 class Delivery(models.Model):
     DELIVERY_STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -52,22 +38,14 @@ class Delivery(models.Model):
     def __str__(self):
         return "Delivery " + str(self.deliveryID)
 
-
-# TODO: This model might be deprecated during future development
-# Consider consolidating with Complaint and Review models
-class Feedback(models.Model):
-    FEEDBACK_TYPE_CHOICES = [
-        ('review', 'Review'),
-        ('complaint', 'Complaint'),
-    ]
-
-    feedbackID = models.AutoField(primary_key=True)
+class Review(models.Model):
+    reviewID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey('accounts.Customer', on_delete=models.CASCADE)
-    deliveryID = models.ForeignKey('Delivery', on_delete=models.CASCADE)
-    feedbackType = models.CharField(max_length=20, choices=FEEDBACK_TYPE_CHOICES)
-    rating = models.PositiveIntegerField(null=True, blank=True)
+    restaurantID = models.ForeignKey('restaurant.Restaurant', on_delete=models.CASCADE)
+    order = models.ForeignKey('orders.Order', on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()
     comment = models.TextField()
-    feedbackDate = models.DateTimeField(auto_now_add=True)
+    reviewDate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Feedback {self.feedbackID} - {self.feedbackType}"
+        return "Review " + str(self.reviewID)

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.shortcuts import render
 
-from operations.models import Complaint, Delivery, Review
+from .models import Complaint, Delivery, Review
 from orders.models import Order
 from restaurant.models import Restaurant
 from accounts.models import Customer, Admin, Driver
