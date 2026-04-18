@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback App Insert Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        fieldset { margin-bottom: 20px; padding: 20px; border: 1px solid #4CAF50; }
+        legend { font-weight: bold; color: #2E7D32; }
+        label { display: block; margin-top: 10px; }
+        input, textarea, select { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+        button { margin-top: 16px; padding: 10px 16px; background: #4CAF50; border: none; color: white; cursor: pointer; }
+        .messages { margin-bottom: 24px; }
+        .messages div { padding: 10px; border-radius: 4px; }
+        .success { background: #E8F5E9; border: 1px solid #C8E6C9; }
+        .error { background: #FFEBEE; border: 1px solid #FFCDD2; }
+    </style>
+</head>
+<body>
+    <h1>Feedback App Data Entry</h1>
+
+    <div class="messages">
+        {% if created %}
+            <div class="success">
+                <strong>Created:</strong>
+                <ul>
+                    {% for item in created %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if errors %}
+            <div class="error">
+                <strong>Errors:</strong>
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>Complaint</legend>
+            <label for="complaint_order_id">Order ID</label>
+            <input type="number" id="complaint_order_id" name="complaint_order_id" placeholder="Existing orderID">
+
+            <label for="complaint_customer_id">Customer ID</label>
+            <input type="number" id="complaint_customer_id" name="complaint_customer_id" placeholder="Existing customerID">
+
+            <label for="complaint_admin_id">Admin ID</label>
+            <input type="number" id="complaint_admin_id" name="complaint_admin_id" placeholder="Existing adminID">
+
+            <label for="complaint_description">Description</label>
+            <textarea id="complaint_description" name="complaint_description" rows="3"></textarea>
+
+            <label for="complaint_status">Status</label>
+            <select id="complaint_status" name="complaint_status">
+                <option value="pending">Pending</option>
+                <option value="under_review">Under Review</option>
+                <option value="resolved">Resolved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Delivery</legend>
+            <label for="delivery_order_id">Order ID</label>
+            <input type="number" id="delivery_order_id" name="delivery_order_id" placeholder="Existing orderID">
+
+            <label for="delivery_driver_id">Driver ID</label>
+            <input type="number" id="delivery_driver_id" name="delivery_driver_id" placeholder="Existing driverID (optional)">
+
+            <label for="delivery_pickup_time">Pickup Time</label>
+            <input type="datetime-local" id="delivery_pickup_time" name="delivery_pickup_time">
+
+            <label for="delivery_delivery_time">Delivery Time</label>
+            <input type="datetime-local" id="delivery_delivery_time" name="delivery_delivery_time">
+
+            <label for="delivery_status">Status</label>
+            <select id="delivery_status" name="delivery_status">
+                <option value="pending">Pending</option>
+                <option value="picked_up">Picked Up</option>
+                <option value="in_transit">In Transit</option>
+                <option value="delivered">Delivered</option>
+                <option value="failed">Failed</option>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Review</legend>
+            <label for="review_customer_id">Customer ID</label>
+            <input type="number" id="review_customer_id" name="review_customer_id" placeholder="Existing customerID">
+
+            <label for="review_restaurant_id">Restaurant ID</label>
+            <input type="number" id="review_restaurant_id" name="review_restaurant_id" placeholder="Existing restaurantID">
+
+            <label for="review_order_id">Order ID</label>
+            <input type="number" id="review_order_id" name="review_order_id" placeholder="Existing orderID">
+
+            <label for="review_rating">Rating</label>
+            <input type="number" id="review_rating" name="review_rating" min="1" max="5">
+
+            <label for="review_comment">Comment</label>
+            <textarea id="review_comment" name="review_comment" rows="3"></textarea>
+        </fieldset>
+
+        <button type="submit">Submit Feedback Data</button>
+    </form>
+
+</body>
+</html>
