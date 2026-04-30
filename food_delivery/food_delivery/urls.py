@@ -9,6 +9,7 @@ urlpatterns = [
 
     # The empty string '' MUST point to index_view
     path('', views.index_view, name='index'),
+    path('index/', views.index_view, name='index_alias'),
 
     # The 'login/' string MUST point to login_view
     path('login/', views.login_view, name='login'),
