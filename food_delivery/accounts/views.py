@@ -17,16 +17,28 @@ def home_view(request):
 
 @login_required
 def edit_profile_view(request):
+    user = request.user
     if request.method == 'POST':
-        user = request.user
-        user.first_name = request.POST.get('first_name', user.first_name)
-        user.last_name = request.POST.get('last_name', user.last_name)
-        user.email = request.POST.get('email', user.email)
-        user.save()
-        messages.success(request, 'Profile updated successfully!')
-        return redirect('home')
+        new_username = request.POST.get('username', '').strip()
+        new_password = request.POST.get('password', '').strip()
+        confirm_password = request.POST.get('confirm_password', '').strip()
 
-    return render(request, 'edit_profile.html')
+        if not new_username:
+            messages.error(request, 'Username is required.')
+        elif User.objects.filter(username=new_username).exclude(pk=user.pk).exists():
+            messages.error(request, 'That username is already taken.')
+        elif not new_password:
+            messages.error(request, 'Password is required.')
+        elif new_password != confirm_password:
+            messages.error(request, 'Passwords do not match.')
+        else:
+            user.username = new_username
+            user.set_password(new_password)
+            user.save()
+            messages.success(request, 'Profile updated successfully! Please log in again with your new credentials.')
+            return redirect('login')
+
+    return render(request, 'edit_profile.html', {'user': user})
 
 
 def login_view(request):
