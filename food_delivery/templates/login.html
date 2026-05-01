@@ -16,6 +16,9 @@
 
     <form action="" method="POST">
         {% csrf_token %}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
         <label>Email (or Username):</label><br>
         <input type="text" name="email" required><br><br>
 

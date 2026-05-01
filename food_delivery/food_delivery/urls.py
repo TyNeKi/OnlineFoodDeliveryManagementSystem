@@ -10,5 +10,6 @@ urlpatterns = [
     path('logout/', accounts_views.logout_view, name='logout'),
     path('home/', accounts_views.home_view, name='home'),
     path('edit-profile/', accounts_views.edit_profile_view, name='edit_profile'),
+    path('add-user/', accounts_views.add_user_view, name='add_user'),
     path('feedback/', include('feedback.urls')),
 ]

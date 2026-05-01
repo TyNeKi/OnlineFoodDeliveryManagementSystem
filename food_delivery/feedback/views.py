@@ -10,7 +10,7 @@ from accounts.models import Customer, Admin, Driver
 
 
 def index_view(request):
-    return render(request, 'feedback/index.html')
+    return redirect('login')
 
 
 def add_new_complaint_view(request):
