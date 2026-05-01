@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Add New Complaint</title>
+    <title>Edit Profile - Food Delivery System</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
         .nav { background-color: #f0f0f0; padding: 10px; margin-bottom: 20px; }
@@ -10,7 +9,7 @@
         .nav a:hover { color: #007bff; }
         form { max-width: 400px; }
         label { display: block; margin-top: 10px; }
-        input, textarea, select { width: 100%; padding: 8px; margin-top: 4px; }
+        input { width: 100%; padding: 8px; margin-top: 4px; }
         button { margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
         button:hover { background-color: #0056b3; }
     </style>
@@ -23,12 +22,30 @@
         <a href="{% url 'logout' %}">Log Off</a>
     </div>
 
-    <h1>Add New Complaint</h1>
+    <h1>Edit Your Profile</h1>
+
+    {% if messages %}
+        <div style="margin-bottom: 20px;">
+            {% for message in messages %}
+                <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Complaint</button>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+        <button type="submit">Update Profile</button>
     </form>
+
     <p><a href="{% url 'home' %}">Back to Home</a></p>
 </body>
 </html>
