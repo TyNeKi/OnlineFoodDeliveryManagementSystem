@@ -1,11 +1,24 @@
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from .forms import ComplaintForm
 from .models import Complaint, Delivery, Review
 from orders.models import Order
 from restaurant.models import Restaurant
 from accounts.models import Customer, Admin, Driver
+
+
+def index_view(request):
+    return render(request, 'feedback/index.html')
+
+
+def add_new_complaint_view(request):
+    form = ComplaintForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('feedback_add_new_complaint')
+    return render(request, 'feedback/addNewComplaint.html', {'form': form})
 
 
 def feedback_app_view(request):

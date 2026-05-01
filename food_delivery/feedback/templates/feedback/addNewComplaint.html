@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Complaint</title>
+</head>
+<body>
+    <h1>Add New Complaint</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Complaint</button>
+    </form>
+    <p><a href="/">Back to Feedback home</a></p>
+</body>
+</html>

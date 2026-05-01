@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-from accounts import views
+from feedback import views as feedback_views
+from accounts import views as accounts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('', views.index_view, name='index'),
-
-    path('login/', views.login_view, name='login'),
+    path('', feedback_views.index_view, name='index'),
+    path('login/', accounts_views.login_view, name='login'),
     path('feedback/', include('feedback.urls')),
 ]
