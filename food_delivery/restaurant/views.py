@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RestaurantForm, CategoryForm, MenuForm, MenuItemForm
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'restaurant_index.html')
 
 def add_new_restaurant(request):
     if request.method == 'POST':
