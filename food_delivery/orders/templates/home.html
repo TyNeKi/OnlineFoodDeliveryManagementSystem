@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .logout {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Home</h1>
+
+    <div class="nav">
+        <a href="{% url 'add_new_order' %}">Add New Order</a>
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+        <a href="{% url 'logoff' %}" class="logout">Log Off</a>
+    </div>
+</div>
+</html>

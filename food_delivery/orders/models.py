@@ -29,3 +29,12 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return "OrderItem " + str(self.orderItemID)
+
+class TempUser(models.Model):
+    username = models.CharField(primary_key=True, max_length=15)
+    password = models.CharField(max_length=15)
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.username

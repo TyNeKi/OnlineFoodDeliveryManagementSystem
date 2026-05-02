@@ -5,6 +5,12 @@
     <title>Index</title>
 </head>
 <body>
-    <a href="/orders/AddNewOrder/">Add New Order</a>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter Username">
+        <input type="password" name="password" placeholder="Enter Password">
+        <input type="submit" name="btnLogin" value="Login"> {{ msg }}
+
+    </form>
 </body>
 </html>

@@ -11,11 +11,11 @@
         {% csrf_token %}
 
         <h3>Order</h3>
-    {{ order_form }}
+        {{ order_form }}
 
-    <h3>Item</h3>
-    {{ item_form }}
-
+        <h3>Order Items</h3>
+        {{ item_form }}
+        <button type="submit">Add Item</button>
 
         <button type="submit">Save Order</button>
     </form>
