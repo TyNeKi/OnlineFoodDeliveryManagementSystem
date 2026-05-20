@@ -96,7 +96,7 @@
                 <ul class="nav-links">
                     <li><a href="{% url 'profile' %}">Edit Profile</a></li>
                     <li><a href="{% url 'restaurant_index' %}">Manage Restaurants</a></li>
-                    {% if user.is_superuser %}
+                    {% if user.is_staff %}
                         <li><a href="/admin/">Admin Panel</a></li>
                     {% endif %}
                     <li>
