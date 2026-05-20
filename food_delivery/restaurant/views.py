@@ -1,14 +1,20 @@
 from django.shortcuts import render, redirect
 from .forms import RestaurantForm, CategoryForm, MenuForm, MenuItemForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     return render(request, 'restaurant_index.html')
 
+@login_required
 def add_new_restaurant(request):
     if request.method == 'POST':
         form = RestaurantForm(request.POST)
         if form.is_valid():
-            form.save()
+            restaurant = form.save(commit=False)
+            restaurant.userID = request.user
+            restaurant.save()
+            messages.success(request, 'Restaurant added successfully!')
             return redirect('restaurant_index')
     else:
         form = RestaurantForm()

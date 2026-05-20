@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Restaurant(models.Model):
 
@@ -8,7 +9,7 @@ class Restaurant(models.Model):
     ]
 
     restaurantID = models.AutoField(primary_key=True)
-    adminID = models.ForeignKey('accounts.Admin', on_delete=models.CASCADE)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurantName = models.CharField(max_length=100)
     address = models.TextField()
     phoneNumber = models.CharField(max_length=15)

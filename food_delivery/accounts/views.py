@@ -9,11 +9,9 @@ def index_view(request):
 
 def login_view(request):
     if request.method == 'POST':
-        # Grab whatever they typed into the first box
         login_input = request.POST.get('email')
         password = request.POST.get('password')
 
-        # NEW LOGIC: Check if they typed an email or a username
         if '@' in login_input:
             try:
                 user_record = User.objects.get(email=login_input)
@@ -21,14 +19,13 @@ def login_view(request):
             except User.DoesNotExist:
                 username_to_check = None
         else:
-            # If there's no '@', assume they just typed their Superuser username!
             username_to_check = login_input
 
-        # Verify the password
         user = authenticate(request, username=username_to_check, password=password)
 
         if user is not None:
             login(request, user)
+            messages.success(request, f"Welcome, {user.username}!")
             return redirect('index')
         else:
             messages.error(request, 'Invalid login details. Please try again.')
@@ -37,6 +34,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, "You have been successfully logged out.")
     return redirect('login')
 
 def register_view(request):

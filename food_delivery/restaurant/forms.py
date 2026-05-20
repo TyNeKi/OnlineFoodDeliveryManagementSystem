@@ -2,9 +2,12 @@ from django import forms
 from .models import Restaurant, Category, Menu, MenuItem
 
 class RestaurantForm(forms.ModelForm):
+    openingTime = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    closingTime = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+
     class Meta:
         model = Restaurant
-        fields = '__all__'
+        exclude = ('userID',)
 
 class CategoryForm(forms.ModelForm):
     class Meta:
