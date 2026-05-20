@@ -11,24 +11,30 @@ def login_view(request):
     if request.method == 'POST':
         login_input = request.POST.get('email')
         password = request.POST.get('password')
-
+        
+        user = None
+        # Check if the input is an email or a username
         if '@' in login_input:
             try:
+                # Find the user by their email
                 user_record = User.objects.get(email=login_input)
-                username_to_check = user_record.username
+                # Authenticate using the found username
+                user = authenticate(request, username=user_record.username, password=password)
             except User.DoesNotExist:
-                username_to_check = None
+                # No user has this email address
+                pass # Will be handled by the final 'if user is None' check
         else:
-            username_to_check = login_input
-
-        user = authenticate(request, username=username_to_check, password=password)
+            # Assume it's a username and authenticate directly
+            user = authenticate(request, username=login_input, password=password)
 
         if user is not None:
             login(request, user)
             messages.success(request, f"Welcome, {user.username}!")
             return redirect('index')
         else:
-            messages.error(request, 'Invalid login details. Please try again.')
+            # If authentication fails for any reason, show a generic error
+            messages.error(request, 'Invalid credentials. Please check your username/email and password.')
+            return redirect('login')
 
     return render(request, 'login.html')
 

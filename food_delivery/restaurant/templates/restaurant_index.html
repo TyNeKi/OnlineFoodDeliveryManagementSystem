@@ -1,26 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Restaurant Forms</title>
+    <meta charset="UTF-8">
+    <title>Restaurant Management</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .nav-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .nav-list li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .nav-list a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .nav-list a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+        .messages {
+            padding: 0;
+            list-style-type: none;
+        }
+        .messages li {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .messages li.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
 </head>
 <body>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
+    <div class="container">
+        <h1>Restaurant Management</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <ul class="nav-list">
+            <li><a href="{% url 'add_new_restaurant' %}">Add New Restaurant</a></li>
+            <li><a href="{% url 'add_new_category' %}">Add New Category</a></li>
+            <li><a href="{% url 'add_new_menu' %}">Add New Menu</a></li>
+            <li><a href="{% url 'add_new_menu_item' %}">Add New Menu Item</a></li>
         </ul>
-    {% endif %}
 
-    <h1>Restaurant Management Forms</h1>
-    <ul>
-        <li><a href="{% url 'add_new_restaurant' %}">Add New Restaurant</a></li>
-        <li><a href="{% url 'add_new_category' %}">Add New Category</a></li>
-        <li><a href="{% url 'add_new_menu' %}">Add New Menu</a></li>
-        <li><a href="{% url 'add_new_menu_item' %}">Add New Menu Item</a></li>
-    </ul>
-
-    <br>
-    <a href="/">Back to Dashboard</a>
+        <a href="/" class="back-link">Back to Dashboard</a>
+    </div>
 </body>
 </html>
