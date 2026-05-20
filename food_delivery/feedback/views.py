@@ -1,8 +1,9 @@
 from datetime import datetime
 
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
-from .forms import ComplaintForm
+from .forms import ComplaintForm, ReviewForm
 from .models import Complaint, Delivery, Review
 from orders.models import Order
 from restaurant.models import Restaurant
@@ -13,12 +14,23 @@ def index_view(request):
     return redirect('login')
 
 
+@login_required
 def add_new_complaint_view(request):
     form = ComplaintForm(request.POST or None)
+    success = False
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect('feedback_add_new_complaint')
-    return render(request, 'feedback/addNewComplaint.html', {'form': form})
+        success = True
+    return render(request, 'feedback/addNewComplaint.html', {'form': form, 'success': success})
+
+
+@login_required
+def review_delivery_view(request):
+    form = ReviewForm(request.POST or None)
+    success = False
+    if request.method == 'POST' and form.is_valid():
+        success = True
+    return render(request, 'feedback/review_delivery.html', {'form': form, 'success': success})
 
 
 def feedback_app_view(request):

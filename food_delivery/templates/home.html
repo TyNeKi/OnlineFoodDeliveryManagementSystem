@@ -3,40 +3,178 @@
 <head>
     <title>Home - Food Delivery System</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .nav { background-color: #f0f0f0; padding: 10px; margin-bottom: 20px; }
-        .nav a { margin-right: 20px; text-decoration: none; color: #333; }
-        .nav a:hover { color: #007bff; }
-        .welcome { margin-bottom: 30px; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #fff1c9 0%, #ffe3ac 40%, #ff8a65 100%);
+            color: #3d0a0a;
+        }
+        .page-shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            background: #b71c1c;
+            padding: 18px 24px;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(183, 28, 28, 0.25);
+        }
+        .nav a {
+            color: #fff8e1;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .nav a:hover {
+            color: #ffe082;
+        }
+        .welcome {
+            margin: 36px 0 20px;
+            padding: 28px;
+            background: rgba(255,255,255,0.92);
+            border: 1px solid #ffd54f;
+            border-radius: 20px;
+            box-shadow: 0 18px 32px rgba(0,0,0,0.12);
+        }
+        .welcome h1 {
+            margin-top: 0;
+            font-size: clamp(2rem, 2.8vw, 3.2rem);
+            letter-spacing: 0.06em;
+            color: #b71c1c;
+        }
+        .welcome p {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #5b120f;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+        .card {
+            position: relative;
+            padding: 28px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255,235,59,0.95), rgba(255,167,38,0.92));
+            border: 1px solid #ffd54f;
+            box-shadow: 0 20px 28px rgba(183, 28, 28, 0.18);
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 160px;
+            height: 160px;
+            background: rgba(183,28,28,0.12);
+            border-radius: 50%;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #7b1f1f;
+        }
+        .card p {
+            margin: 16px 0 0;
+            color: #5d1a1a;
+            line-height: 1.6;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 14px 22px;
+            border-radius: 999px;
+            background: #c62828;
+            color: #fff8e1;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .card a:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+        .actions {
+            background: rgba(255,255,255,0.88);
+            border: 1px solid #ffd54f;
+            padding: 22px 24px;
+            border-radius: 20px;
+        }
+        .actions h2 {
+            margin-top: 0;
+        }
+        .actions ul {
+            padding-left: 20px;
+            margin: 12px 0 0;
+        }
+        .actions li {
+            margin-bottom: 10px;
+        }
+        .actions a {
+            color: #b71c1c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .actions a:hover {
+            color: #ff6f00;
+        }
+        .messages {
+            margin-top: 24px;
+        }
+        .messages p {
+            margin: 6px 0;
+        }
     </style>
 </head>
 <body>
-    <div class="nav">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'edit_profile' %}">Edit Profile</a>
-        <a href="{% url 'add_user' %}">Add New Record / Register</a>
-        <a href="{% url 'logout' %}">Log Off</a>
-    </div>
-
-    <div class="welcome">
-        <h1>WELCOME {{ user.username }}</h1>
-    </div>
-
-    <div>
-        <h2>Navigation</h2>
-        <ul>
-            <li><a href="{% url 'edit_profile' %}">Edit Your Profile</a></li>
-            <li><a href="{% url 'add_user' %}">Add New Record</a></li>
-            <li><a href="{% url 'logout' %}">Log Off</a></li>
-        </ul>
-    </div>
-
-    {% if messages %}
-        <div style="margin-top: 20px;">
-            {% for message in messages %}
-                <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">{{ message }}</p>
-            {% endfor %}
+    <div class="page-shell">
+        <div class="nav">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'edit_profile' %}">Edit Profile</a>
+            <a href="{% url 'add_user' %}">Add Record</a>
+            <a href="{% url 'logout' %}">Log Off</a>
         </div>
-    {% endif %}
+
+        <div class="welcome">
+            <h1>WELCOME {{ user.username }}</h1>
+            <p>Pick a restaurant feedback path to continue: review a delivery or file a complaint.</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h2>Review a Delivery</h2>
+                <p>Rate the delivery experience and leave a short comment about service quality.</p>
+                <a href="{% url 'feedback_review_delivery' %}">Go to Review</a>
+            </div>
+            <div class="card">
+                <h2>Have a Complaint?</h2>
+                <p>Share what went wrong with an order so the restaurant team can address it.</p>
+                <a href="{% url 'feedback_add_new_complaint' %}">Go to Complaint Form</a>
+            </div>
+        </div>
+
+        <div class="actions">
+            <h2>Admin Actions</h2>
+            <ul>
+                <li><a href="{% url 'edit_profile' %}">Edit Your Profile</a></li>
+                <li><a href="{% url 'add_user' %}">Add New Record</a></li>
+                <li><a href="{% url 'logout' %}">Log Off</a></li>
+            </ul>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p style="color: {% if message.tags == 'error' %}#d32f2f{% else %}#795548{% endif %};">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

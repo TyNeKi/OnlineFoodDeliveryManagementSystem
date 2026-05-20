@@ -2,32 +2,115 @@
 <html>
 <head>
     <title>User Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top, #ffedd5 0%, #ffc4a3 46%, #d32f2f 100%);
+            color: #3d0a0a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-shell {
+            width: min(540px, calc(100% - 32px));
+            padding: 32px;
+            background: rgba(255,255,255,0.96);
+            border-radius: 28px;
+            border: 2px solid #ffca28;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: #b71c1c;
+            letter-spacing: 0.04em;
+        }
+        .form-row {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #7b1f1f;
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid #d93a30;
+            background: #fff3e0;
+            font-size: 1rem;
+            color: #420e0e;
+        }
+        button {
+            width: 100%;
+            background: #f9a825;
+            color: #4e2600;
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 22px rgba(209, 68, 45, 0.18);
+        }
+        button:hover {
+            background: #ffb300;
+        }
+        .help-text {
+            margin: 18px 0 8px;
+            font-size: 0.95rem;
+            color: #5d1a1a;
+        }
+        .back-link {
+            color: #b71c1c;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .message-list {
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #d32f2f;
+            margin-bottom: 18px;
+        }
+        .message-list li {
+            color: #b71c1c;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login to your account</h2>
+    <div class="page-shell">
+        <h2>Restaurant Admin Login</h2>
 
-    {% if messages %}
-        <ul style="color: red;">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% if request.GET.next %}
-            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% if messages %}
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
         {% endif %}
-        <label>Email (or Username):</label><br>
-        <input type="text" name="email" required><br><br>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <div class="form-row">
+                <label>Email (or Username):</label>
+                <input type="text" name="email" required>
+            </div>
+            <div class="form-row">
+                <label>Password:</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
 
-        <button type="submit">Login</button>
-    </form>
-    <br>
-    <a href="/">Back to Home</a>
+        <p class="help-text"><strong>Default admin login:</strong> <code>admin</code> / <code>123456</code></p>
+        <p><a class="back-link" href="/">Back to Home</a></p>
+    </div>
 </body>
 </html>

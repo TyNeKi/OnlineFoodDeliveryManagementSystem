@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Complaint</title>
+    <title>Review Delivery</title>
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #fff4e5 0%, #ffe0b2 45%, #ff8a65 100%);
+            background: linear-gradient(180deg, #fff8e1 0%, #ffd54f 40%, #d84315 100%);
             color: #4a0b0b;
             min-height: 100vh;
         }
@@ -35,9 +35,9 @@
         }
         .content {
             margin-top: 30px;
+            padding: 32px;
             background: rgba(255,255,255,0.96);
             border-radius: 26px;
-            padding: 32px;
             border: 1px solid #ffd54f;
             box-shadow: 0 22px 32px rgba(0,0,0,0.12);
         }
@@ -58,10 +58,12 @@
             gap: 18px;
         }
         label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 700;
             color: #7b1f1f;
         }
-        input, textarea, select {
+        input, textarea {
             width: 100%;
             padding: 14px 16px;
             border-radius: 14px;
@@ -69,9 +71,11 @@
             background: #fff3e0;
             font-size: 1rem;
             color: #420e0e;
+            box-sizing: border-box;
         }
         button {
             width: fit-content;
+            margin-top: 4px;
             background: #f9a825;
             color: #4e2600;
             border: none;
@@ -84,33 +88,28 @@
         button:hover {
             background: #ffb300;
         }
-        .back-link {
-            color: #b71c1c;
-            text-decoration: none;
-            font-weight: 700;
-        }
     </style>
 </head>
 <body>
     <div class="page-shell">
         <div class="nav">
             <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'edit_profile' %}">Edit Profile</a>
-            <a href="{% url 'feedback_add_new_complaint' %}">Add Complaint</a>
+            <a href="{% url 'feedback_add_new_complaint' %}">Complaint</a>
             <a href="{% url 'logout' %}">Log Off</a>
         </div>
 
         <div class="content">
-            <h1>Add New Complaint</h1>
+            <h1>Review a Delivery</h1>
+
             {% if success %}
-                <div class="success">Complaint submitted successfully.</div>
+                <div class="success">Thank you! Your delivery review was submitted successfully.</div>
             {% endif %}
+
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Save Complaint</button>
+                <button type="submit">Submit Review</button>
             </form>
-            <p><a class="back-link" href="{% url 'home' %}">Back to Home</a></p>
         </div>
     </div>
 </body>
