@@ -20,31 +20,37 @@ def add_new_restaurant(request):
         form = RestaurantForm()
     return render(request, 'addNewRestaurant.html', {'form': form})
 
+@login_required
 def add_new_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Category added successfully!')
             return redirect('restaurant_index')
     else:
         form = CategoryForm()
     return render(request, 'addNewCategory.html', {'form': form})
 
+@login_required
 def add_new_menu(request):
     if request.method == 'POST':
         form = MenuForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Menu added successfully!')
             return redirect('restaurant_index')
     else:
         form = MenuForm()
     return render(request, 'addNewMenu.html', {'form': form})
 
+@login_required
 def add_new_menu_item(request):
     if request.method == 'POST':
         form = MenuItemForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Menu item added successfully!')
             return redirect('restaurant_index')
     else:
         form = MenuItemForm()
