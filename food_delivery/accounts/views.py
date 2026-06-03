@@ -46,6 +46,8 @@ def logout_view(request):
 def register_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
@@ -62,7 +64,7 @@ def register_view(request):
             messages.error(request, 'Email already exists.')
             return render(request, 'register.html')
 
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
         login(request, user)
         return redirect('index')
 
