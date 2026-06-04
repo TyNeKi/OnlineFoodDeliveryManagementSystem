@@ -1,0 +1,250 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #cc0000;
+    padding: 12px 30px;
+}
+
+.navbar h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 22px;
+}
+
+.nav-center {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-center a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #ffcc00;
+    color: #222;
+    border-radius: 6px;
+}
+
+.nav-center a:hover {
+    background-color: #e6b800;
+}
+
+.nav-right a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #cc0000;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.nav-right a:hover {
+    background-color: #f0f0f0;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h2 {
+    text-decoration: none;
+    font-size: 60px;
+    padding: 10px 20px;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+/* ===== FORM CONTAINER ===== */
+.form-container {
+    background-color: #fff;
+    border: 2px solid #cc0000;
+    border-radius: 8px;
+    padding: 30px 40px;
+    max-width: 400px;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container h1 {
+    color: #cc0000;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}
+
+.form-container h3 {
+    color: #cc0000;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.cancel-link {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+    color: #cc0000;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+.msg {
+    color: #cc0000;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #fffdf5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #cc0000;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+    border-color: #aaa;
+}
+
+textarea {
+    resize: none;
+    max-height: 60px;
+}
+
+select {
+    cursor: pointer;
+}
+
+button,
+input[type="submit"] {
+    box-sizing: border-box;
+    padding: 10px 24px;
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #ffcc00;
+    color: #222;
+}
+
+button:active,
+input[type="submit"]:active {
+    transform: scale(0.97);
+}
+
+label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #444;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 16px;
+}
+
+.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #cc0000;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border-color: #cc0000;
+    background-color: #fff5f5;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffcc00;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

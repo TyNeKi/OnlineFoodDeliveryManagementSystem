@@ -10,7 +10,7 @@ ORDER_STATUS_CHOICES = [
 
 class Order(models.Model):
     orderID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey('accounts.Customer', on_delete=models.CASCADE)
+    customerID = models.ForeignKey('orders.TempUser', on_delete=models.CASCADE)
     restaurantID = models.ForeignKey('restaurant.Restaurant', on_delete=models.CASCADE)
     orderDate = models.DateTimeField(auto_now_add=True)
     orderStatus = models.CharField(max_length=20, choices=ORDER_STATUS_CHOICES, default='Pending')
@@ -31,7 +31,8 @@ class OrderItem(models.Model):
         return "OrderItem " + str(self.orderItemID)
 
 class TempUser(models.Model):
-    username = models.CharField(primary_key=True, max_length=15)
+    userID = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=15)
     password = models.CharField(max_length=15)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)

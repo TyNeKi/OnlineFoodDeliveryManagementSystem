@@ -55,4 +55,4 @@ class MenuItem(models.Model):
     availabilityStatus = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.itemName
+        return self.itemName + " - ₱" + str(self.price)

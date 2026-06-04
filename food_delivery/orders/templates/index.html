@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Enter Username">
-        <input type="password" name="password" placeholder="Enter Password">
-        <input type="submit" name="btnLogin" value="Login"> {{ msg }}
-
-    </form>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Enter Username" style="margin-bottom: 15px; display:block;">
+            <input type="password" name="password" placeholder="Enter Password" style="margin-bottom: 15px; display:block;">
+            <input type="submit" name="btnLogin" value="Login" style="margin-right: 20px;">
+            <span class="msg">{{ msg }}</span>
+        </form>
+    </div>
 </body>
 </html>
